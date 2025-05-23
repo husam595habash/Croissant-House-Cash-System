@@ -1,0 +1,58 @@
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: croissanthouse
+-- ------------------------------------------------------
+-- Server version	8.0.40
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `orderdetails`
+--
+
+DROP TABLE IF EXISTS `orderdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orderdetails` (
+  `OrderID` int NOT NULL,
+  `ItemID` int NOT NULL,
+  `Quantity` int NOT NULL,
+  `Price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`OrderID`,`ItemID`),
+  KEY `ItemID` (`ItemID`),
+  CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`) ON DELETE CASCADE,
+  CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`ItemID`) REFERENCES `items` (`ItemID`) ON DELETE CASCADE,
+  CONSTRAINT `orderdetails_chk_1` CHECK ((`Quantity` > 0)),
+  CONSTRAINT `orderdetails_chk_2` CHECK ((`Price` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+LOCK TABLES `orderdetails` WRITE;
+/*!40000 ALTER TABLE `orderdetails` DISABLE KEYS */;
+INSERT INTO `orderdetails` VALUES (1,1,1,10.00),(1,31,1,12.00),(1,51,1,90.00),(2,27,2,6.50),(2,31,2,12.00),(2,48,1,3.00),(3,1,1,10.00),(3,2,1,12.00),(3,40,1,20.00),(3,41,1,22.00),(4,1,2,10.00),(4,5,1,14.00),(4,8,1,16.00),(4,9,1,14.00),(4,26,2,6.00),(4,31,3,12.00),(4,34,1,20.00),(4,35,2,22.00),(4,36,1,9.00),(5,14,3,12.00),(5,27,2,6.50),(5,51,1,100.00),(6,14,2,12.00),(6,17,2,16.00),(6,20,1,15.00),(6,21,1,16.00),(7,41,1,22.00),(7,43,1,15.00),(7,51,1,120.00),(8,1,3,10.00),(8,5,2,14.00),(8,31,5,12.00),(8,37,4,50.00),(8,41,1,22.00),(9,26,2,6.00),(9,37,2,50.00),(9,38,1,30.00),(9,46,2,7.00),(9,51,1,60.00),(10,14,1,12.00),(10,20,2,15.00),(10,25,1,7.00),(10,26,1,6.00),(10,29,1,5.00),(10,38,1,30.00),(10,50,1,5.00),(11,13,4,12.00),(11,17,4,16.00),(11,26,3,6.00),(11,29,1,5.00),(11,38,2,30.00),(11,44,1,17.00),(11,48,1,3.00),(12,5,1,14.00),(12,49,2,10.00),(12,51,1,120.00),(13,1,2,10.00),(13,26,2,6.00),(13,29,1,5.00),(13,40,2,20.00),(13,51,1,120.00),(14,1,1,10.00),(14,31,2,12.00),(14,41,1,22.00),(15,1,2,10.00),(15,31,2,12.00),(16,1,1,10.00),(16,51,1,20.00),(17,5,2,14.00),(17,37,1,50.00),(17,51,1,20.00),(18,2,2,12.00),(18,41,1,22.00),(18,51,1,4.00),(19,1,1,10.00),(19,2,2,12.00),(19,41,1,22.00),(20,1,2,10.00),(20,5,1,14.00),(20,41,2,22.00),(20,51,1,20.00),(21,1,2,10.00),(21,5,1,14.00),(21,37,1,50.00),(21,41,1,22.00),(21,43,2,15.00),(21,51,1,30.00),(22,8,2,16.00),(22,40,1,20.00),(22,43,1,15.00),(22,51,1,20.00);
+/*!40000 ALTER TABLE `orderdetails` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-05-24  1:18:09
